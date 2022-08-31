@@ -26,5 +26,11 @@ All public methods and variables that exist in the singleton class can be access
 Because any scrip can access the class, it is helpful to protect the instance with a `private` setter [property](./property.md).
 
 ``` cs
-
+public class Singleton : MonoBehaviour {
+    public static Singleton Instance { get; private set; }
+}
 ```
+
+# Reference
+
+[Singletons in Unity (done right)](https://gamedevbeginner.com/singletons-in-unity-the-right-way/) by John French
