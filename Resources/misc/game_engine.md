@@ -1,5 +1,6 @@
 # What is a Game Engine?
 
+Game engines are programs that leverage a number of resources for developers.
 
 ## Elements
 

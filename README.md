@@ -56,7 +56,7 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 ### C#
 
-* [C# for Unity - Basics](./Resources/cs/cs_in_unity-basics.md)
+* [C# for Unity - Basics](./Resources/cs/cs_in_Unity-basics.md)
 
 * [Operators](./Resources/cs/operators.md)
 
