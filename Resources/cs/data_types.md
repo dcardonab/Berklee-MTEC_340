@@ -1,9 +1,5 @@
 # Data Types
 
-## Value Types
-
-### Simple Types
-
 * Signed and unsigned integral
     > | Signed  | Unsigned | Definition |
     > | ------- | -------- | ---------- |
@@ -34,22 +30,3 @@
 
 * Boolean
     * `bool` --> Boolean values (i.e., `true` or `false`)
-
-### Enum Types
-
-### Struct Types
-
-### Nullable Value Types
-
-### Tuple Value Types
-
-
-## Reference Types
-
-### Class Types
-
-### Interface Types
-
-### Array Types
-
-### Delegate Types

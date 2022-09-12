@@ -16,7 +16,7 @@ Course Textbook: [Learning C# by Developing Games with Unity 2021, Sixth Edition
 
 For this course, we will be using version **2021.3.9f1** of the Unity Editor, since it has been optimized for Apple Silicone architectures. This means that there is no need to use the Rosetta interpreter to translate the Intel version of Unity (AArch64) to Silicone (ARM64). If you own an Intel based Mac, please download the Intel version of Unity 2021.3.9f1.
 
-Throughout this course, feel free to explore the [Unity Manual](https://docs.unity3d.com/Manual/index.html) for more in-depth information.
+Throughout this course, feel free to explore the [Unity Reference Manual](https://docs.unity3d.com/Manual/index.html) for more in-depth information. The [Unity Scripting Reference](https://docs.unity3d.com/ScriptReference/) is another powerful resource. Note that you can click on the *Switch to Scripting* button on the reference manual of a component to go to the scripting reference for that component. The *Switch to Manual* button also exists in every component's scripting reference.
 
 The [Resources](./Resources/) folder of this repo contains specific topics that we'll cover throughout this course.
 
@@ -45,8 +45,6 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 * [Unity UI](./Resources/unity/unity_ui.md)
 
-* [Anatomy](./Resources/unity/anatomy.md)
-
 
 ### Basics
 
@@ -58,11 +56,11 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 ### C#
 
-* [C# for Unity - Basics](./Resources/cs/cs_in_Unity-basics.md)
-
-* [Data Types](./Resources/cs/data_types.md)
+* [C# for Unity - Basics](./Resources/cs/cs_in_unity-basics.md)
 
 * [Operators](./Resources/cs/operators.md)
+
+* [Useful Keywords](./Resources/cs/keywords.md)
 
 * [Properties](./Resources/cs/property.md)
 
@@ -71,10 +69,10 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 ### Unity
 
-*Note: To change from Light and Dark mode go to*
+> *Note: To change from Light and Dark mode go to*:<br />
 > **Preferences > General > Editor Theme**
 
-* [MonoBehaviour](./Resources/unity/monobehaviour.md)
+* [Anatomy](./Resources/unity/anatomy.md)
 
 * [Collision Detection](./Resources/unity/collision_detection.md)
 

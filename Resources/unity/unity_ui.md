@@ -20,12 +20,15 @@ Panels are the small windows that are found in Unity. There are 6 different pane
     * Displays errors, warnings, and other messages via `Debug.Log()`.
 
 5. Project
-    * Finder and File organizer.
+    * Folder and File organizer displaying all the assets in the Unity project.
 
 6. Inspector
-    * Displays information about a game object.
+    * Displays components of a game object and allows editing the properties of those components.
+    * Note that every component will have a `?` symbol on the top right to directly access the Unity reference manual page for that component.
 
 > **Tip** - Double clicking on a panel tab maximizes that panel to fit the Unity application window.
+
+More info: [Unity Manual - Using the Editor](https://docs.unity3d.com/Manual/UsingTheEditor.html)
 
 ## Layouts
 

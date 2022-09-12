@@ -1,8 +1,20 @@
 # Operators
 
+## Dot Operator
+
+The dot operator (`.`) is used to access members of a class, regardless of whether they are methods or properties. Methods will be followed by a parenthesis, including any arguments required by that method.
+
+```cs
+Object myObject = new SomeObject();
+
+myObject.memberProperty;
+myObject.memberMethod();
+myObject.memberMethodWithArguments(myArgument);
+```
+
 ## Ternary Operator
 
-Ternary operators `?:`, also known as conditional operators, allow us to reduce an if/else conditional to a single line. They evaluate a boolean expression, and returns one of two expressions. They can be paired with assignment operators or `return` statements.
+Ternary operators (`?:`), also known as conditional operators, allow us to reduce an if/else conditional to a single line. They evaluate a boolean expression, and returns one of two expressions. They can be paired with assignment operators or `return` statements.
 
 In terms of syntax, a condition is given, followed by a `?`, followed by two value that will be returned if the statement evaluates to `true` (consequent) or `false` (alternative) respectively, both separated by `:`.
 
