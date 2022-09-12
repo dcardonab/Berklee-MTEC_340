@@ -1,0 +1,1 @@
+OnCollideEnter() and OnCollideEnter2D()

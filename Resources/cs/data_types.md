@@ -25,7 +25,7 @@
         >
         >  * $2^{8} = 256$
 
-* IEEE binary floating-point
+* IEEE (Institute of Electrical and Electronics Engineers) binary floating-point
     * `float`
     * `double`
 
