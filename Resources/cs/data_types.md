@@ -57,3 +57,12 @@ Signed values span the total range of the integral across both positive and nega
 ## Inferred
 
 * `var` --> Variable will automatically infer its datatype based on the type of assigned data.
+
+
+## Class
+
+* The base class for all other types: `object`
+
+* `string` --> Sequence of UTF-16 code units
+
+* User-defined types of the form `class C {...}`

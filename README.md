@@ -52,6 +52,7 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 * [Coordinate Systems](./Resources/misc/coordinate_systems.md)
 
+* [Camera](./Resources/misc/camera.md)
 
 
 ### C#
@@ -73,9 +74,6 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 ### Unity
 
-> *Note: To change from Light and Dark mode go to*:<br />
-> **Preferences > General > Editor Theme**
-
 * [Anatomy](./Resources/unity/anatomy.md)
 
 * [Collision Detection](./Resources/unity/collision_detection.md)
@@ -83,3 +81,12 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 * [Script Lifecycle](./Resources/unity/script_lifecycle.md)
 
 * [GUI](./Resources/unity/gui.md)
+
+
+### Tips
+
+* To change from Light and Dark mode go to: *Preferences > General > Editor Theme*
+
+* To see the game's FPS, use the stats tab from the Game panel when running your game.
+
+* To switch from 2D to 3D mode or vice versa, go to" *Edit > Project Settings... > Editor > Default Behavior.

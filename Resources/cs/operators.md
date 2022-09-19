@@ -3,26 +3,24 @@
 
 ## Arithmetic
 
-**Two-Operand Arithmetic Operators**
+### Two-Operand Arithmetic Operators
 
 * `+` --> Addition
-
 * `-` --> Subtraction
-
 * `*` --> Multiplication
-
 * `/` --> Division
-
 * `%` --> Modulo - Remainder of the first operand divided by the second one.
 
-**One-Operand Arithmetic Operators**
+### One-Operand Arithmetic Operators
 
 * `++` --> Increment of operand by 1
-
 * `--` --> Decrement of operand by 1
 
-> Note that `i++` (prefix notation) and `++i` (postfix notation) are different in regards to the order of operations. The former will first assign and then increment, and the latter will increment and then assign.
->
+### Prefix vs Postfix Operators
+
+`++i` --> The prefix operator will first increment the value of the variable, and then assign it using a standard assignment operator.
+`i++` --> The postfix operator will first assign value using a standard assignment operator, and then increment the value of the variable.
+
 > e.g.
 > ``` cs
 > int x, y;
@@ -31,10 +29,11 @@
 > Debug.Log(x);     // Debug will output 2.
 > Debug.Log(y);     // Debug will output 1.
 > 
-> x = 1;
-> y = ++x;
-> Debug.Log(x);     // Debug will output 2.
-> Debug.Log(y);     // Debug will output 2.
+> int i, j;
+> i = 1;
+> j = ++i;
+> Debug.Log(i);     // Debug will output 2.
+> Debug.Log(j);     // Debug will output 2.
 > ```
 
 Operator precedence follows **PEMDAS**:
@@ -55,6 +54,7 @@ Operator precedence follows **PEMDAS**:
 * `/=` --> Divide value to the current value of a variable, and assign it to that same variable.
 * `%=` --> Modulo the value to the current value of a variable against passed operand, and assign it to that same variable.
 
+
 ## Assignment
 
 * `=` --> Assign value to variable.
@@ -74,10 +74,8 @@ Operator precedence follows **PEMDAS**:
 
 * `&&` --> And
     * **and** will force a result when the first condition is true.
-
 * `||` --> Or
     * **or** will force a result when the first condition is false.
-
 * `!` --> Not
 
 

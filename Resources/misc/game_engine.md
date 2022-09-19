@@ -16,6 +16,8 @@ Game engines are programs that leverage a number of resources for developers.
 
 * Physics Engine
 
+* Scene Graph
+
 
 ## What Can We Build? – Use-cases and Industries
 
@@ -35,4 +37,3 @@ Game engines are programs that leverage a number of resources for developers.
 * Unity3D
 
 * Unreal Engine
-
