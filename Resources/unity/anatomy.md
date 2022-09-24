@@ -24,7 +24,7 @@ The different gameplay elements in Unity show up in the Hierarchy panel. The bas
 
 ## Scene
 
-Technically speaking, each scene will correspond to the root node of a graph, containing all the objects and elements that make up that scene as children.
+Each scene will correspond to the root node of a graph, containing all the entities (i.e., objects) and elements that make up that scene as children.
 
 Scenes are useful for separating the content of different moments in our game, such as the opening scene, the play scene, and the game over scene. Each scene contains all of the objects that are relevant to a portion of our game.
 
@@ -41,4 +41,13 @@ To create a new scene: **File > New Scene** or **CMD + N**.
 
 ## GameObjects
 
+GameObjects represent anything that exists in a scene. They are the building blocks scenes use in Unity, and each GameObject contains functional components that determine its appearance and functionality.
+
+The GameObject class contains a collection of methods that facilitate their usage via a script. They can also communicate with other objects by ensuring that they use a `public` access modifier. 
+
+
 ## Components
+
+Components make up GameObjects and determine the GameObject's functionality or appearance. There are many available components, including a transform, script, collider, rigid-body, and many others.
+
+Components can be programmatically added or removed within a script, allowing for them to retrieve their values from within a scene. Their values and parameters can also be assigned programmatically.

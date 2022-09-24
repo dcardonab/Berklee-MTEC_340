@@ -65,6 +65,10 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 * [Methods](./Resources/cs/methods.md)
 
+* [Collections](./Resources/cs/collections.md)
+
+* [Control Flow](./Resources/cs/control_flow.md)
+
 * [Useful Keywords](./Resources/cs/keywords.md)
 
 * [Properties](./Resources/cs/property.md)
