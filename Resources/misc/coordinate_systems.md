@@ -68,9 +68,4 @@ Maintaining this structure, rotate your hand so that the X-axis (i.e., index fin
 0 & 0 & 0 & 1
 \end{bmatrix}$ -->
 
-> <img src="https://latex.codecogs.com/gif.latex? \begin{bmatrix}
--1 & 0 & 0 & 0\\
-0 & 1 & 0 & 0\\
-0 & 0 & 1 & 0\\
-0 & 0 & 0 & 1
-\end{bmatrix}" /> 
+> <img src="https://latex.codecogs.com/gif.latex? \begin{bmatrix}-1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{bmatrix}" /> 
