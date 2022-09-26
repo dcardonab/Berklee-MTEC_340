@@ -16,6 +16,10 @@
 
 * If there is an attempt to change the size of the array, elements contained in the existing array will be lost. This is due to the change directly creating a new array the is assigned to the existing array variable (variables are containers).
 
+* Included in the [`System` namespace](https://learn.microsoft.com/en-us/dotnet/api/system?view=net-7.0):
+
+    * `using System;`
+
 
 ### Syntax
 
@@ -72,7 +76,17 @@ A useful property of the array object is `length`, which is an integer correspon
 
 ## Lists
 
-Lists store elements of the same type, but they have the capacity to add, remove, and update elements. Elements stored in lists aren't stored sequentially. They are also mutable, meaning that it is possible to change its length without overwriting the whole list. This gives them superior flexibility over array, but comes at a higher computational expense. Because their length can be modified, there is no need to indicate the number of elements the list will contain when initializing it.
+* Store elements of the same type, but they have the capacity to add, remove, and update elements.
+
+* Elements stored in lists aren't stored sequentially in memory. They are however ordered and indexed using subscript notation.
+
+* Lists are mutable, meaning that it is possible to change its length without overwriting the whole list. This gives them superior flexibility over array, but comes at a higher computational expense.
+
+* Because their length can be modified, there is no need to indicate the number of elements the list will contain when initializing it.
+
+* Included in the [`System.Collections.Generic` namespace](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic?view=net-7.0):
+
+    * `using System.Collections.Generic;`
 
 ### Syntax
 
@@ -117,9 +131,22 @@ myList.Remove(value);
 
 ## Dictionaries
 
-Dictionaries store key-value pairs for each element, as opposed to single values, and they are indexed by keys. Contrary to arrays and lists, dictionaries are unordered. They can however be sorted and ordered after they have been created based on specific methods.
+* Store key-value pairs for each element, as opposed to single values.
 
-Keys must be unique and cannot be changed. Values on the other hand can be changed. To update a key, it is necessary to remove the key-value pair, and add the updated key as a new key-value pair.
+* Dictionaries are indexed by keys.
+
+* Contrary to arrays and lists, dictionaries are unordered.
+
+* They can be sorted and ordered after they have been created based on specific methods.
+
+* Keys must be unique and cannot be changed. Values on the other hand can be changed.
+
+* To update a key, it is necessary to remove the key-value pair, and add the updated key as a new key-value pair.
+
+* Included in the [`System.Collections.Generic` namespace](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic?view=net-7.0):
+
+    * `using System.Collections.Generic;`
+    
 
 ### Syntax
 
