@@ -119,3 +119,15 @@ return i > j ? i : j;
 // variables.
 int k = i > j ? i : j;
 ```
+
+## Subscript Operator
+
+A pair of square brackets with a number, indicating what array element to index to.
+
+``` cs
+int[] myArray = {5, 7, 9};
+
+int value = myArray[0];     // Subscript operator.
+
+Debug.Log(value);   // This will print 5 to the Unity console.
+```

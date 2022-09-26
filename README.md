@@ -80,9 +80,9 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 * [Anatomy](./Resources/unity/anatomy.md)
 
-* [Collision Detection](./Resources/unity/collision_detection.md)
-
 * [Script Lifecycle](./Resources/unity/script_lifecycle.md)
+
+* [Collision Detection](./Resources/unity/collision_detection.md)
 
 * [GUI](./Resources/unity/gui.md)
 
@@ -93,4 +93,4 @@ The [Resources](./Resources/) folder of this repo contains specific topics that 
 
 * To see the game's FPS, use the stats tab from the Game panel when running your game.
 
-* To switch from 2D to 3D mode or vice versa, go to" *Edit > Project Settings... > Editor > Default Behavior.
+* To switch from 2D to 3D mode or vice versa, go to *Edit > Project Settings... > Editor > Default Behavior*.
