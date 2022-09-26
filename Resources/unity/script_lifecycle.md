@@ -51,6 +51,8 @@ Unity has main sections that execute in the following order
 
 * Update()
 
+    * Called once per frame. Main update function for frame-to-frame updates and for update logic.
+
 * LateUpdate()
 
     * Executed after the internal animation update that runs in the Game Logic portion of the game.
