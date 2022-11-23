@@ -4,20 +4,26 @@ public class MouseLook : MonoBehaviour
 {
     [SerializeField] float _sensitivity = 5000f;
     [SerializeField] Transform _playerTransform;
+    [SerializeField] Canvas _canvas;
 
     float _xRotation = 0f;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+    }
+
     void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Update()
     {
         // Lock cursor to the center of the screen to prevent
         // it from going beyond the screen bounds.
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
+        Cursor.lockState = _canvas.enabled ? CursorLockMode.None : CursorLockMode.Locked;
 
-    // Update is called once per frame
-    void Update()
-    {
         // Get input
         float mouseX = Input.GetAxis("Mouse X") * _sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * _sensitivity * Time.deltaTime;

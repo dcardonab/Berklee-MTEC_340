@@ -17,6 +17,7 @@ public class PauseManager : MonoBehaviour
     void Start()
     {
         canvas = GetComponent<Canvas>();
+        canvas.enabled = false;
     }
 
     // Update is called once per frame
