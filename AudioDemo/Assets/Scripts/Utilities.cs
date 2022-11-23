@@ -39,7 +39,7 @@ public static class Utilities
     }
 
     /********************************* FADES *********************************/
-    public static IEnumerator FadeIn(AudioSource source, float fadeTime = 1.0f, bool startSound = true)
+    public static IEnumerator FadeIn(AudioSource source, float fadeTime = 2.0f, bool startSound = true)
     {
         if (startSound || !source.isPlaying)
             source.Play();
@@ -55,10 +55,15 @@ public static class Utilities
         source.volume = 0.95f;
     }
 
-    public static IEnumerator FadeOut(AudioSource source, float fadeTime = 1.0f, bool stopSound = false)
+    public static IEnumerator FadeOut(AudioSource source, float fadeTime = 2.0f, bool stopSound = false)
     {
         while (source.volume > 0.0f)
         {
+            // We divide deltaTime by fade time to obtain the duration in seconds.
+            // If we multiply, we obtain half the inverse duration:
+            // e.g.: if the fade duration is 2
+            //     deltaTime / 2 --> correct fade duration --> approx. 2 secs
+            //     deltaTime * 2 --> incorrect duration --> approx. 0.5 secs
             source.volume -= Time.deltaTime / fadeTime;
             yield return null;
         }
