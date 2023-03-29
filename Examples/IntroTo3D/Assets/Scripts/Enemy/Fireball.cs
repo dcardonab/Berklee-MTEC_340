@@ -16,7 +16,8 @@ public class Fireball : MonoBehaviour
     // collision system. Additionally, its collider Trigger must be activated.
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCharacter player = GetComponent<PlayerCharacter>();
+        PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+
         if (player != null)
             player.Hurt(_damage);
 
