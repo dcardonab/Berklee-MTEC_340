@@ -17,13 +17,11 @@ public class SoundEmitter : MonoBehaviour
         // Move object to the location where the sound will be played.
         transform.position = pos;
 
-        // The enum name is being casted as an int to obtain an index.
-        _source.clip = _animalSoundClips[(int)name];
-
         if (fadeIn)
             StartCoroutine(Utilities.FadeIn(_source));
         else
-            _source.Play();
+            // The enum name is being casted as an int to obtain an index.
+            _source.PlayOneShot(_animalSoundClips[(int)name]);
 
         /*
          * Alternatively, use the AudioSource class method PlayClipAtPoint,

@@ -320,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sensitivity: 5000
   _playerTransform: {fileID: 1016775316}
+  _canvas: {fileID: 0}
 --- !u!81 &296527515
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1001,6 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 24100000, guid: 46cc4cd41607546b5b9e035b10fcc537, type: 2}
+  soundDesignMixer: {fileID: 0}
 --- !u!1 &973154695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,7 +1595,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429813301}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

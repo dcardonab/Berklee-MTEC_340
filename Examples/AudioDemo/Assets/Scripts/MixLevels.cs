@@ -8,7 +8,10 @@ public class MixLevels : MonoBehaviour
 
     public void SetMusicLvl(float level)
     {
-        masterMixer.SetFloat("musicVol", level);
+        // -80 --> 0.0001
+        // 0 --> 1
+        float logLevel = 20.0f * Mathf.Log10(level);
+        masterMixer.SetFloat("musicVol", logLevel);
     }
 
     public void SetAmbientLvl(float level)
