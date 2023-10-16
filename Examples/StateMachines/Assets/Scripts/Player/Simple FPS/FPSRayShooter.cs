@@ -5,6 +5,8 @@ public class FPSRayShooter : MonoBehaviour
 {
     private Camera _cam;
 
+    bool _enemyStateMachine;
+
     private void Start()
     {
         _cam = GetComponent<Camera>();
@@ -12,10 +14,16 @@ public class FPSRayShooter : MonoBehaviour
         // Lock cursor to the middle of the screen and hide it.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // Try to retrieve the version of the enemy that is using a state
+        // machine to set a flag so the enemy properly reacts to being shot
+        GameObject enemy = GameObject.Find("Enemy_StateMachine(Clone)");
+        _enemyStateMachine = enemy == null;
     }
 
     private void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward * 100, Color.red);
         // Left click
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,8 +43,10 @@ public class FPSRayShooter : MonoBehaviour
                 ReactiveTarget target = hitObj.GetComponent<ReactiveTarget>();
 
                 if (target != null)
-                    //target.ReactToHit();
-                    hitObj.GetComponent<EnemyStateMachine>().IsAlive = false;
+                    if (!_enemyStateMachine)
+                        target.ReactToHit();
+                    else
+                        hitObj.GetComponent<EnemyStateMachine>().ReactToHit();
                 else
                     StartCoroutine(SphereIndicator(hit.point));
             }

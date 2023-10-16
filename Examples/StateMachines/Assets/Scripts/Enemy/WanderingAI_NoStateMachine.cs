@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WanderingAI : MonoBehaviour
+public class WanderingAI_NoStateMachine : MonoBehaviour
 {
     [SerializeField] float _speed = 3.0f;
     [SerializeField] float _obstacleRange = 5.0f;
@@ -15,7 +13,7 @@ public class WanderingAI : MonoBehaviour
 
     private void Start()
     {
-        SetAlive(true);
+        _isAlive = true;
     }
 
     private void Update()

@@ -11,5 +11,5 @@ public class EnemyDyingState : EnemyBaseState
         Debug.Log("ENEMY entered the DYING state");
     }
 
-    public override void UpdateState(EnemyStateMachine enemy) { }
+    public override void UpdateState(EnemyStateMachine enemy) {}
 }

@@ -38,6 +38,7 @@ public class RelativeMovement : MonoBehaviour
 
     [SerializeField] float _moveSpeed = 6.0f;
     [SerializeField] float _rotSpeed = 15.0f;
+
     [SerializeField] float _jumpSpeed = 15.0f;
     [SerializeField] float _gravity = -9.8f;
     [SerializeField] float _terminalVelocity = -20.0f;
@@ -112,7 +113,7 @@ public class RelativeMovement : MonoBehaviour
              * class, which returns a vector in the direction pointed
              * stright up from the ground.
              */
-        Vector3 right = _target.right;
+            Vector3 right = _target.right;
             Vector3 forward = Vector3.Cross(right, Vector3.up);
 
             /*
@@ -210,7 +211,7 @@ public class RelativeMovement : MonoBehaviour
 
         if (hitGround)
             if (Input.GetButtonDown("Jump"))
-                _vertSpeed =  _jumpSpeed;
+                _vertSpeed = _jumpSpeed;
             else
             {
                 _vertSpeed = _minFall;
@@ -244,8 +245,14 @@ public class RelativeMovement : MonoBehaviour
                 // Respond differently depending on whether the
                 // player is facing the contact point or not.
                 if (Vector3.Dot(movement, _contact.normal) < 0)
+                    // If the direction of movement and the normal are
+                    // opposite, meaning I'm going up the slope, push
+                    // character downward.
                     movement = _contact.normal * _moveSpeed;
                 else
+                    // If the direction of movement and the normal are
+                    // in the same direction, meaning I'm going down the
+                    // slope, add contact normal resistance to movement.
                     movement += _contact.normal * _moveSpeed;
             }
         }
@@ -256,7 +263,7 @@ public class RelativeMovement : MonoBehaviour
          * the `Move` method of the CharacterController. This will
          * apply both horizontal and vertical movement to the player.
          */
-            movement.y = _vertSpeed;
+        movement.y = _vertSpeed;
         _charController.Move(movement * Time.deltaTime);
     }
 

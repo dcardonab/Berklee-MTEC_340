@@ -43,7 +43,7 @@ public class FPSInput : MonoBehaviour
 
         movement *= Time.deltaTime;
 
-        // Transform movement from local to global coordinates
+        // Convert movement vector to rotation settings of player
         movement = transform.TransformDirection(movement);
 
         _controller.Move(movement);

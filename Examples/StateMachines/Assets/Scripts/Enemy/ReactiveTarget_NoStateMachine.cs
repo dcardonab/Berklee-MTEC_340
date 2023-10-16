@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ReactiveTarget : MonoBehaviour
+public class ReactiveTarget_NoStateMachine : MonoBehaviour
 {
     [SerializeField] float _deathAnimTime = 1.5f;
 
@@ -13,6 +13,10 @@ public class ReactiveTarget : MonoBehaviour
     public void ReactToHit()
     {
         // Switch AI off to prevent entity from continuing to move.
+        WanderingAI_NoStateMachine behavior = GetComponent<WanderingAI_NoStateMachine>();
+        if (behavior != null)
+            behavior.SetAlive(false);
+
         StartCoroutine(Die());
     }
 

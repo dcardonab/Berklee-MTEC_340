@@ -47,4 +47,10 @@ public class EnemyStateMachine : MonoBehaviour
         _currentState = newState;
         _currentState.EnterState(this);
     }
+
+    public void ReactToHit()
+    {
+        IsAlive = false;
+        SetState(DyingState);
+    }
 }

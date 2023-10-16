@@ -13,9 +13,6 @@ public class EnemyAliveState : EnemyBaseState
 
     public override void UpdateState(EnemyStateMachine enemy)
     {
-        if (!enemy.IsAlive)
-            enemy.SetState(enemy.DyingState);
-
         enemy.WanderingAI.Wander();
     }
 }

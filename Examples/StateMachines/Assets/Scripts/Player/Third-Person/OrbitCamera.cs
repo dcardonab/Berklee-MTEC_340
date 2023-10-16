@@ -1,6 +1,7 @@
 /*
- * This script will be controlling the camera. For advanced
- * camera control, explore Unity's Cinemachine package.
+ * This script will be controlling the camera.
+ *
+ * For advanced camera control, explore Unity's Cinemachine package.
  */
 
 using UnityEngine;
@@ -14,6 +15,7 @@ public class OrbitCamera : MonoBehaviour
     float _rotY;
     Vector3 _offset;
 
+
     private void Start()
     {
         // Store current Y rotation
@@ -26,6 +28,7 @@ public class OrbitCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+
         // Increment rotation values based on input
         float horInput = Input.GetAxis("Horizontal");
 

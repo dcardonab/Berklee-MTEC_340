@@ -14,10 +14,12 @@ public class MouseLook : MonoBehaviour
     [Header("Degrees of Freedom")]
     [SerializeField] RotationAxes _axes = RotationAxes.MouseXandY;
 
+    [Space(5)]
     [Header("Sensitivity")]
     [SerializeField] float _sensitivityHor = 9.0f;
     [SerializeField] float _sensitivityVert = 9.0f;
 
+    [Space(5)]
     [Header("Constraints")]
     [SerializeField] float _minVert = -45.0f;
     [SerializeField] float _maxVert = 45.0f;
@@ -29,6 +31,7 @@ public class MouseLook : MonoBehaviour
         // Constraints to ensure that the Rigidbody doesn't react
         // to rotation, in case there is one
         Rigidbody rb = GetComponent<Rigidbody>();
+
         if (rb != null)
             rb.freezeRotation = true;
     }
