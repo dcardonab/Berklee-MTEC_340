@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -13,6 +11,7 @@ public class GameBehavior : MonoBehaviour
     public float Timer
     {
         get => _timer;
+
         set
         {
             _timer = value;
@@ -24,6 +23,8 @@ public class GameBehavior : MonoBehaviour
             TimerGUI.text = $"{minutes:00}:{seconds:00}";
         }
     }
+
+
     public TextMeshProUGUI TimerGUI;
 
 
