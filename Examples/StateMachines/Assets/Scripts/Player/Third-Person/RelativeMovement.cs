@@ -52,7 +52,7 @@ public class RelativeMovement : MonoBehaviour
 
     // The Animator component is available to all game object that
     // can be animated.
-    Animator _animator;
+    //Animator _animator;
 
     private void Start()
     {
@@ -81,7 +81,7 @@ public class RelativeMovement : MonoBehaviour
             (_charController.height + _charController.radius) /
             _charController.height * 0.95f;
 
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -158,7 +158,7 @@ public class RelativeMovement : MonoBehaviour
          * components, without actually performing the square root
          * function, which is an expensive computation.
          */
-        _animator.SetFloat("Speed", movement.sqrMagnitude);
+        //_animator.SetFloat("Speed", movement.sqrMagnitude);
 
         /*
          * JUMPING
@@ -215,7 +215,7 @@ public class RelativeMovement : MonoBehaviour
             else
             {
                 _vertSpeed = _minFall;
-                _animator.SetBool("Jumping", false);
+                //_animator.SetBool("Jumping", false);
             }
 
         else
@@ -235,8 +235,8 @@ public class RelativeMovement : MonoBehaviour
 
             // This condition prevents immediately transitioning to the
             // jumping state right at the beginning of the level.
-            if (_contact != null)
-                _animator.SetBool("Jumping", true);
+            //if (_contact != null)
+            //    _animator.SetBool("Jumping", true);
 
             // This will execute when raycasting didn't detect a
             // collision in range, but the collider might.

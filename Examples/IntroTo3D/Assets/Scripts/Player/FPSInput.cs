@@ -25,7 +25,7 @@ public class FPSInput : MonoBehaviour
         // Moving the transform via the Translate method won't engage
         // collision detection.
 
-        //transform.Translate(
+        // transform.Translate(
         //    Input.GetAxis("Horizontal") * _speed * Time.deltaTime,
         //    0,
         //    Input.GetAxis("Vertical") * _speed * Time.deltaTime);

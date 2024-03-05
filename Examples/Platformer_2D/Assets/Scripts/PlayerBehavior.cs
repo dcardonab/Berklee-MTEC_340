@@ -154,26 +154,27 @@ public class PlayerBehavior : MonoBehaviour
 
         // Flickering every 500ms for the last second of the powerup.
         int flicker = 0;
-        while (flicker < 4)
+        int numFlickers = 4;
+        while (flicker < numFlickers)
         {
             _renderer.material = flicker % 2 == 0 ? MatStandard : MatPowerUp;
 
             flicker++;
 
-            yield return new WaitForSeconds(_powerUpDuration * 0.25f / 4);
+            yield return new WaitForSeconds(_powerUpDuration * 0.25f / numFlickers);
         }
 
         // Reset the flicker property for next iteration.
         flicker = 0;
-
+        numFlickers = 8;
         // Flickering every 250ms for the last second of the powerup.
-        while (flicker < 8)
+        while (flicker < numFlickers)
         {
             _renderer.material = flicker % 2 == 0 ? MatStandard : MatPowerUp;
 
             flicker++;
 
-            yield return new WaitForSeconds(_powerUpDuration * 0.25f / 8);
+            yield return new WaitForSeconds(_powerUpDuration * 0.25f / numFlickers);
         }
 
         // Ensure the ending material is the standard material.
