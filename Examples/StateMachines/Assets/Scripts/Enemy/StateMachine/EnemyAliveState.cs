@@ -13,6 +13,7 @@ public class EnemyAliveState : EnemyBaseState
 
     public override void UpdateState(EnemyStateMachine enemy)
     {
+        Debug.Log("ENEMY entered the ALIVE state - Update");
         enemy.WanderingAI.Wander();
     }
 }

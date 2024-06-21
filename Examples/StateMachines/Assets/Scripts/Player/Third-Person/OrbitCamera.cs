@@ -28,7 +28,6 @@ public class OrbitCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-
         // Increment rotation values based on input
         float horInput = Input.GetAxis("Horizontal");
 

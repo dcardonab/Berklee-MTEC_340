@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 9332f9885399547db84f99ead3e41c1e
+  - enabled: 0
     path: Assets/Scenes/PongStandard.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PongPhysics.unity
+    guid: 848284a46f01847aab00e556a58ccfa6
   m_configObjects: {}
