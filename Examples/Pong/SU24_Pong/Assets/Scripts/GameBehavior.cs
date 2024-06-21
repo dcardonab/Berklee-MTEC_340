@@ -50,9 +50,6 @@ public class GameBehavior : MonoBehaviour
         {
             Instance = this;
         }
-        
-        Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        Utilities.HeightInUnits = cam.ScreenToWorldPoint(new Vector3(0, cam.pixelHeight, 0)).y;
     }
 
     private void Start()
