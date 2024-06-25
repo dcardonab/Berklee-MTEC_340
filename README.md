@@ -1,20 +1,17 @@
 # MTEC-340 - Game Programming with Unity3D
 
-## Berklee College of Music - Fall 2022
+## Berklee College of Music
 
 
-| Instructor | David Cardona – [dcardona@berklee.edu](mailto:dcardona@berklee.edu) |
-| -------- | -------- |
-| Schedule | Monday 4:00pm - 5:50pm |
-| Location | 150 Mass Ave. - B58 |
+David Cardona – [dcardona@berklee.edu](mailto:dcardona@berklee.edu) |
 
-Course Textbook: [Learning C# by Developing Games with Unity 2021, Sixth Edition, by Harrison Ferrone](https://smile.amazon.com/Learning-Developing-Games-Unity-2021/dp/1801813949/)
+Course Textbook: [Learning C# by Developing Games with Unity 2022, Seventh Edition, by Harrison Ferrone](https://www.amazon.com/Learning-Developing-Games-Unity-coding/dp/1837636877)
 
 ---
 
 ## Notes
 
-For this course, we will be using version **2021.3.9f1** of the Unity Editor, since it has been optimized for Apple Silicone architectures. This means that there is no need to use the Rosetta interpreter to translate the Intel version of Unity (AArch64) to Silicone (ARM64). If you own an Intel based Mac, please download the Intel version of Unity 2021.3.9f1.
+For this course, we will be using version **2022.3.31f1** of the Unity Editor, since it has been optimized for Apple Silicone architectures. This means that there is no need to use the Rosetta interpreter to translate the Intel version of Unity (AArch64) to Silicone (ARM64). If you own an Intel based Mac, please download the Intel version of Unity.
 
 Throughout this course, feel free to explore the [Unity Reference Manual](https://docs.unity3d.com/Manual/index.html) for more in-depth information. The [Unity Scripting Reference](https://docs.unity3d.com/ScriptReference/) is another powerful resource. Note that you can click on the *Switch to Scripting* button on the reference manual of a component to go to the scripting reference for that component. The *Switch to Manual* button also exists in every component's scripting reference.
 
