@@ -11,10 +11,16 @@ public class GameBehavior : MonoBehaviour
 
     public Player[] Players = new Player[2];
 
+    [Header("Gameplay")]
     public int ScoreGoal = 5;
 
+    [Header("Paddle")]
     public float PaddleSpeed = 5.0f;
+    
+    [Header("Ball")]
+    [Range(2.0f, 10.0f)]
     public float InitialBallSpeed = 5.0f;
+    [Range(1.1f, 2.0f)]
     public float BallSpeedIncrement = 1.25f;
 
     public enum StateMachine
@@ -37,6 +43,7 @@ public class GameBehavior : MonoBehaviour
         }
     }
 
+    [Header("GUI")]
     [SerializeField] TextMeshProUGUI _pauseGUI;
 
     private void Awake()

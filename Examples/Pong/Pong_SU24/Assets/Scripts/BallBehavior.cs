@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class BallBehavior : MonoBehaviour
 {
     private float _speed;
+    [Header("Gameplay")]
     [SerializeField] private float _xLimit = 10.0f;
     float _yLimit;
     private Vector2 _direction;
     
+    [Space(5)]
     private AudioSource _source;
+    
+    [Header("Audio")]
     [SerializeField] AudioClip _wallHit;
     [SerializeField] AudioClip _paddleHit;
     [SerializeField] AudioClip _losePoint;
