@@ -8,10 +8,15 @@ public class EnemyDyingState : EnemyBaseState
     {
         enemy.ReactiveTarget.ReactToHit();
 
-        Debug.Log("ENEMY entered the DYING state - Enter");
+        Debug.Log("ENEMY DYING state - Enter");
     }
 
     public override void UpdateState(EnemyStateMachine enemy) {
-        Debug.Log("ENEMY entered the DYING state - Update");
+        Debug.Log("ENEMY DYING state - Update");
+    }
+    
+    public override void ExitState(EnemyStateMachine enemy)
+    {
+        Debug.Log("ENEMY DYING state - Exit");
     }
 }

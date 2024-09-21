@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
 
     private void Update()
     {
-        // Enemies will continue to spaw indefinitely as long as there are no
+        // Enemies will continue to spawn indefinitely as long as there are no
         // enemies on the scene.
         if (_enemy == null)
         {

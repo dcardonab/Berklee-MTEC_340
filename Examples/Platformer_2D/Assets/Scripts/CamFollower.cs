@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CamFollower : MonoBehaviour
@@ -29,7 +30,7 @@ public class CamFollower : MonoBehaviour
             _target.position.y + _camOffsetY,
             transform.position.z
         );
-
+        
         transform.position = Vector3.SmoothDamp(
             transform.position, targetPosition, ref _velocity, _smoothTime
         );

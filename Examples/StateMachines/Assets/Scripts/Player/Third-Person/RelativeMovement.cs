@@ -235,8 +235,8 @@ public class RelativeMovement : MonoBehaviour
 
             // This condition prevents immediately transitioning to the
             // jumping state right at the beginning of the level.
-            if (_contact != null)
-               _animator.SetBool("Jumping", true);
+            // if (_contact != null)
+            //    _animator.SetBool("Jumping", true);
 
             // This will execute when raycasting didn't detect a
             // collision in range, but the collider might.

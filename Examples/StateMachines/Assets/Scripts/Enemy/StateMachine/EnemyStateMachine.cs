@@ -15,8 +15,8 @@ public class EnemyStateMachine : MonoBehaviour
     public bool IsAlive { get => _isAlive; set { _isAlive = value;  } }
 
     // Components that will handle essential behavior of the GameObject
-    public ReactiveTarget ReactiveTarget;
-    public WanderingAI WanderingAI;
+    [HideInInspector] public ReactiveTarget ReactiveTarget;
+    [HideInInspector] public WanderingAI WanderingAI;
 
     private void Awake()
     {
@@ -44,13 +44,16 @@ public class EnemyStateMachine : MonoBehaviour
     /// <param name="newState"></param>
     public void SetState(EnemyBaseState newState)
     {
+        if (_currentState != null)
+        {
+            _currentState.ExitState(this);
+        }
         _currentState = newState;
         _currentState.EnterState(this);
     }
 
     public void ReactToHit()
     {
-        IsAlive = false;
         SetState(DyingState);
     }
 }

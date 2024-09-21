@@ -32,20 +32,20 @@ public class FPSInput : MonoBehaviour
 
         float deltaX = Input.GetAxis("Horizontal") * _speed;
         float deltaZ = Input.GetAxis("Vertical") * _speed;
-
+        
         Vector3 movement = new(deltaX, 0, deltaZ);
-
+        
         // Clamp diagonal movement
         movement = Vector3.ClampMagnitude(movement, _speed);
-
+        
         // Apply gravity after X and Z have been clamped
         movement.y = _gravity;
-
+        
         movement *= Time.deltaTime;
-
+        
         // Convert movement vector to rotation settings of player
         movement = transform.TransformDirection(movement);
-
+        
         _controller.Move(movement);
     }
 }

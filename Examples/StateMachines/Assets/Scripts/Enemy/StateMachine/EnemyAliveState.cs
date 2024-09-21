@@ -1,5 +1,6 @@
 // STATE MACHINE - CONCRETE STATE
 
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class EnemyAliveState : EnemyBaseState
@@ -8,12 +9,18 @@ public class EnemyAliveState : EnemyBaseState
     {
         enemy.IsAlive = true;
 
-        Debug.Log("ENEMY entered the ALIVE state");
+        Debug.Log("ENEMY ALIVE state - Enter");
     }
 
     public override void UpdateState(EnemyStateMachine enemy)
     {
-        Debug.Log("ENEMY entered the ALIVE state - Update");
+        Debug.Log("ENEMY ALIVE state - Update");
         enemy.WanderingAI.Wander();
+    }
+
+    public override void ExitState(EnemyStateMachine enemy)
+    {
+        Debug.Log("ENEMY ALIVE state - Exit");
+        enemy.IsAlive = false;
     }
 }

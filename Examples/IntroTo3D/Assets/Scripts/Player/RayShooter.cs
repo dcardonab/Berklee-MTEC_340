@@ -20,7 +20,7 @@ public class RayShooter : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Create a point at the middle of the viewport
-            Vector3 point = new(_cam.pixelWidth / 2, _cam.pixelHeight / 2, 0);
+            Vector3 point = new(_cam.pixelWidth * 0.5f, _cam.pixelHeight * 0.5f, 0);
 
             // Create a ray to the created point
             Ray ray = _cam.ScreenPointToRay(point);
@@ -51,8 +51,8 @@ public class RayShooter : MonoBehaviour
 
         // Position of the text. Note that subtracting the scaled size will
         // ensure that the star is centered.
-        float posX = _cam.pixelWidth / 2 - size / 4;
-        float posY = _cam.pixelHeight / 2 - size / 2;
+        float posX = _cam.pixelWidth * 0.5f - size * 0.25f;
+        float posY = _cam.pixelHeight * 0.5f - size * 0.5f;
 
         // Change the color of the GUI's contents to red.
         GUI.contentColor = Color.red;
