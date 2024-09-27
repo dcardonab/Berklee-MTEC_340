@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BallBehavior : MonoBehaviour
 {
-    public float Speed = 3.0f;
-    public float YLimit = 4.85f;
-    public float XLimit = 10.0f;
+    [SerializeField] float _speed = 3.0f;
+    [SerializeField] float _yLimit = 4.85f;
+    [SerializeField] float _xLimit = 10.0f;
 
     private Vector2 _direction;
     
@@ -20,19 +22,27 @@ public class BallBehavior : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(
-            Speed * _direction.x,
-            Speed * _direction.y,
+            _speed * _direction.x,
+            _speed * _direction.y,
             0.0f
         ) * Time.deltaTime;
 
-        if (Mathf.Abs(transform.position.y) >= YLimit)
+        if (Mathf.Abs(transform.position.y) >= _yLimit)
         {
             _direction.y *= -1;
         }
 
-        if (Mathf.Abs(transform.position.x) >= XLimit)
+        if (Mathf.Abs(transform.position.x) >= _xLimit)
         {
             ResetBall();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Paddle"))
+        {
+            _direction.x *= -1;
         }
     }
 
