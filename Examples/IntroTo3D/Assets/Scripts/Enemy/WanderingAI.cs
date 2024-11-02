@@ -7,13 +7,14 @@ public class WanderingAI : MonoBehaviour
 
     private readonly float _sphereRadius = 0.75f;
     private bool _isAlive;
+    public bool IsAlive { get => _isAlive; set => _isAlive = value; }
 
     [SerializeField] GameObject _fireballPrefab;
     public GameObject _fireball;
 
     private void Start()
     {
-        SetAlive(true);
+        IsAlive = true;
     }
 
     private void Update()
@@ -28,10 +29,8 @@ public class WanderingAI : MonoBehaviour
             // with the player or with the walls.
             if (Physics.SphereCast(ray, _sphereRadius, out RaycastHit hit))
             {
-                GameObject hitObj = hit.transform.gameObject;
-
                 // Shoot a fireball if the ray collided with the player.
-                if (hitObj.GetComponent<CharacterController>())
+                if (hit.transform.CompareTag("Player"))
                 {
                     if (_fireball == null)
                     {
@@ -46,17 +45,12 @@ public class WanderingAI : MonoBehaviour
                 }
 
                 // Otherwise, the ray collided with a wall.
-                else if (hit.distance < _obstacleRange)
+                else if (hit.distance < _obstacleRange && hit.transform.CompareTag("Fireball"))
                 {
                     float theta = Random.Range(-110, 110);
                     transform.Rotate(0, theta, 0);
                 }
             }
         }
-    }
-
-    public void SetAlive(bool alive)
-    {
-        _isAlive = alive;
     }
 }

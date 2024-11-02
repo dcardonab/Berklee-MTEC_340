@@ -5,17 +5,13 @@ public class ReactiveTarget : MonoBehaviour
 {
     [SerializeField] float _deathAnimTime = 1.5f;
 
-    // Used for interpolating rotation
-    private Quaternion _initRotation = Quaternion.Euler(0, 0, 0);
-    private Quaternion _endRotation = Quaternion.Euler(-75, 0, 0);
-
     // This code will be triggered once the entity has been shot.
     public void ReactToHit()
     {
         // Switch AI off to prevent entity from continuing to move.
         WanderingAI behavior = GetComponent<WanderingAI>();
         if (behavior != null)
-            behavior.SetAlive(false);
+            behavior.IsAlive = false;
 
         StartCoroutine(Die());
     }
@@ -23,16 +19,24 @@ public class ReactiveTarget : MonoBehaviour
     IEnumerator Die()
     {
         float elapsedTime = 0.0f;
+        
+        // Use quaternion interpolation to achieve a rotation animation.
+        Quaternion initRotation = transform.rotation;
+        // To combine the effect of two quaternions, we multiply those quaternions together.
+        Quaternion endRotation = transform.rotation * Quaternion.Euler(-75, 0, 0);
 
         while (elapsedTime < _deathAnimTime)
         {
             transform.rotation = Quaternion.Lerp(
-                _initRotation, _endRotation, elapsedTime / _deathAnimTime);
+                initRotation, endRotation, elapsedTime / _deathAnimTime);
 
             elapsedTime += Time.deltaTime;
 
-            yield return null;
+            yield return null;  // Skip frame
         }
+
+        // Make sure that the rotation actually makes it to the destination parameter.
+        transform.rotation = endRotation;
 
         yield return new WaitForSeconds(1);
 
