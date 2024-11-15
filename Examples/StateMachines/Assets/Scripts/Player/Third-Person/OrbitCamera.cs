@@ -15,7 +15,6 @@ public class OrbitCamera : MonoBehaviour
     float _rotY;
     Vector3 _offset;
 
-
     private void Start()
     {
         // Store current Y rotation
@@ -30,7 +29,7 @@ public class OrbitCamera : MonoBehaviour
     {
         // Increment rotation values based on input
         float horInput = Input.GetAxis("Horizontal");
-
+        
         // Rotate based on the keyboard if pressed
         if (!Mathf.Approximately(horInput, 0))
             // Slowly rotate camera with arrow keys
