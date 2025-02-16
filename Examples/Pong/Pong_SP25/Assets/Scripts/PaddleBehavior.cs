@@ -1,19 +1,20 @@
+using System;
 using UnityEngine;
 
 public class PaddleBehavior : MonoBehaviour
 {
-    public float Speed = 4.0f;
+    private float _speed = 4.0f;
 
     public KeyCode UpDirection;
     public KeyCode DownDirection;
 
     public float YLimit = 3.45f;
-    
-    void Start()
+
+    private void Start()
     {
-        
+        _speed = GameBehavior.Instance.PaddleSpeed;
     }
-    
+
     void Update()
     {
         // Resolve movement based on keyboard presses
@@ -21,12 +22,12 @@ public class PaddleBehavior : MonoBehaviour
         
         if (Input.GetKey(UpDirection) && transform.position.y < YLimit)
         {
-            movement += Speed;
+            movement += _speed;
         }
         
         if (Input.GetKey(DownDirection) && transform.position.y > -YLimit)
         {
-            movement -= Speed;
+            movement -= _speed;
         }
 
         // Move the paddle based on the resulting movement

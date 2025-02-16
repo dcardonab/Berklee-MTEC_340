@@ -2,36 +2,75 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour
 {
-    public float XSpeed = 3.0f;
-    public float YSpeed = 3.0f;
-
+    private float _speed;
+    
     private int _xDir;
     private int _yDir;
 
+    public float XLimit = 12.0f;
     public float YLimit = 4.8f;
+
+    private AudioSource _source;
+    [SerializeField] private AudioClip _wallHit;
+    [SerializeField] private AudioClip _paddleHit;
+    [SerializeField] private AudioClip _score;
     
     void Start()
     {
-        if (Random.value > 0.5f)
-        {
-            _xDir = 1;
-        }
-        else
-        {
-            _xDir = -1;
-        }
-
-        // value = condition ? pass : fail
-        _yDir = Random.value > 0.5 ? 1 : -1;
+        _source = GetComponent<AudioSource>();
+        
+        ResetBall();
     }
     
     void Update()
     {
         if (Mathf.Abs(transform.position.y) >= YLimit)
         {
+            // Manually reposition the ball when exceed the bounds of the board
+            transform.position = new Vector3(
+                transform.position.x,                       // X
+                Mathf.Sign(transform.position.y) * YLimit,  // Y
+                transform.position.z                        // Z
+            );
+            
             _yDir *= -1;
+
+            _source.clip = _wallHit;
+            _source.Play();
+        }
+
+        if (Mathf.Abs(transform.position.x) >= XLimit)
+        {
+            _source.clip = _score;
+            _source.Play();
+            
+            ResetBall();
         }
         
-        transform.position += new Vector3(XSpeed * _xDir, YSpeed * _yDir, 0) * Time.deltaTime;
+        transform.position += new Vector3(_speed * _xDir, _speed * _yDir, 0) * Time.deltaTime;
+    }
+
+    void ResetBall()
+    {
+        transform.position = Vector3.zero;
+
+        // value = condition ? pass : fail
+        _xDir = Random.value > 0.5f ? 1 : -1;
+        _yDir = Random.value > 0.5f ? 1 : -1;
+
+        _speed = GameBehavior.Instance.InitBallSpeed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Paddle"))
+        {
+            _speed *= GameBehavior.Instance.BallSpeedIncrement;
+
+            _source.clip = _paddleHit;
+            _source.Play();
+            
+            _xDir *= -1;
+        }
     }
 }
