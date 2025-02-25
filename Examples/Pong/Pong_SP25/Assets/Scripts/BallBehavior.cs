@@ -24,30 +24,37 @@ public class BallBehavior : MonoBehaviour
     
     void Update()
     {
-        if (Mathf.Abs(transform.position.y) >= YLimit)
+        if (GameBehavior.Instance.State == Utilities.GameplayState.Play)
         {
-            // Manually reposition the ball when exceed the bounds of the board
-            transform.position = new Vector3(
-                transform.position.x,                       // X
-                Mathf.Sign(transform.position.y) * YLimit,  // Y
-                transform.position.z                        // Z
-            );
-            
-            _yDir *= -1;
+            if (Mathf.Abs(transform.position.y) >= YLimit)
+            {
+                // Manually reposition the ball when exceed the bounds of the board
+                transform.position = new Vector3(
+                    transform.position.x, // X
+                    Mathf.Sign(transform.position.y) * YLimit, // Y
+                    transform.position.z // Z
+                );
 
-            _source.clip = _wallHit;
-            _source.Play();
-        }
+                _yDir *= -1;
 
-        if (Mathf.Abs(transform.position.x) >= XLimit)
-        {
-            _source.clip = _score;
-            _source.Play();
-            
-            ResetBall();
+                _source.clip = _wallHit;
+                _source.Play();
+            }
+
+            if (Mathf.Abs(transform.position.x) >= XLimit)
+            {
+                _source.clip = _score;
+                _source.Play();
+
+                GameBehavior.Instance.ScorePoint(
+                    transform.position.x > 0 ? 1 : 2
+                );
+
+                ResetBall();
+            }
+
+            transform.position += new Vector3(_speed * _xDir, _speed * _yDir, 0) * Time.deltaTime;
         }
-        
-        transform.position += new Vector3(_speed * _xDir, _speed * _yDir, 0) * Time.deltaTime;
     }
 
     void ResetBall()

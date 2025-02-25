@@ -17,20 +17,23 @@ public class PaddleBehavior : MonoBehaviour
 
     void Update()
     {
-        // Resolve movement based on keyboard presses
-        float movement = 0;
-        
-        if (Input.GetKey(UpDirection) && transform.position.y < YLimit)
+        if (GameBehavior.Instance.State == Utilities.GameplayState.Play)
         {
-            movement += _speed;
-        }
-        
-        if (Input.GetKey(DownDirection) && transform.position.y > -YLimit)
-        {
-            movement -= _speed;
-        }
+            // Resolve movement based on keyboard presses
+            float movement = 0;
+            
+            if (Input.GetKey(UpDirection) && transform.position.y < YLimit)
+            {
+                movement += _speed;
+            }
+            
+            if (Input.GetKey(DownDirection) && transform.position.y > -YLimit)
+            {
+                movement -= _speed;
+            }
 
-        // Move the paddle based on the resulting movement
-        transform.position += new Vector3(0, movement, 0) * Time.deltaTime;
+            // Move the paddle based on the resulting movement
+            transform.position += new Vector3(0, movement, 0) * Time.deltaTime;
+        }
     }
 }
