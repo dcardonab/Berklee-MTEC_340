@@ -62,10 +62,10 @@ public class PlayerBehavior : MonoBehaviour
          * The Y velocity of the Rigidbody is specified by the physics engine.
          * To change this value, go to "Edit > Project Settings > Physics 2D"
          */
-        Vector2 movement = new(deltaX, _body.velocity.y);
+        Vector2 movement = new(deltaX, _body.linearVelocity.y);
 
         // Apply calculated movement to the Rigidbody2D via its velocity.
-        _body.velocity = movement;
+        _body.linearVelocity = movement;
 
 
         /********** Jumping **********/

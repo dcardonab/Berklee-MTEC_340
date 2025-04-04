@@ -6,11 +6,17 @@ public class WanderingAI : MonoBehaviour
     [SerializeField] float _obstacleRange = 5.0f;
 
     private readonly float _sphereRadius = 0.75f;
+    
     private bool _isAlive;
-    public bool IsAlive { get => _isAlive; set => _isAlive = value; }
 
-    [SerializeField] GameObject _fireballPrefab;
-    public GameObject _fireball;
+    public bool IsAlive
+    {
+        get => _isAlive;
+        set => _isAlive = value;
+    }
+
+    [SerializeField] private GameObject _fireballPrefab;
+    [HideInInspector] public GameObject _fireball;
 
     private void Start()
     {
@@ -19,7 +25,7 @@ public class WanderingAI : MonoBehaviour
 
     private void Update()
     {
-        if (_isAlive)
+        if (IsAlive)
         {
             transform.Translate(0, 0, _speed * Time.deltaTime);
 
@@ -45,7 +51,7 @@ public class WanderingAI : MonoBehaviour
                 }
 
                 // Otherwise, the ray collided with a wall.
-                else if (hit.distance < _obstacleRange && hit.transform.CompareTag("Fireball"))
+                else if (hit.distance < _obstacleRange && !hit.transform.CompareTag("Fireball"))
                 {
                     float theta = Random.Range(-110, 110);
                     transform.Rotate(0, theta, 0);

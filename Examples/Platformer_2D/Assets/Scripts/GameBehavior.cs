@@ -16,6 +16,8 @@ public class GameBehavior : MonoBehaviour
         {
             _timer = value;
 
+            // If timer is increasing, use Floor function.
+            // If timer is decreasing, use Ceil function.
             int minutes = Mathf.FloorToInt(Timer / 60.0f);
             int seconds = Mathf.FloorToInt(Timer % 60.0f);
 

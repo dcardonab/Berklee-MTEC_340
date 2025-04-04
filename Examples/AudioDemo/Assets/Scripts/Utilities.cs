@@ -49,7 +49,7 @@ public static class Utilities
         while (source.volume < 0.95f)
         {
             source.volume += Time.deltaTime / fadeTime;
-            yield return null;
+            yield return null;  // Skip a frame
         }
 
         source.volume = 0.95f;

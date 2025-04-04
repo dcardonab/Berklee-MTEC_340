@@ -5,6 +5,8 @@ public class RayShooter : MonoBehaviour
 {
     private Camera _cam;
 
+    private int _z;
+
     private void Start()
     {
         _cam = GetComponent<Camera>();

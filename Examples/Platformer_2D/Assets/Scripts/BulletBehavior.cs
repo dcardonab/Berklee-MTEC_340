@@ -11,7 +11,7 @@ public class BulletBehavior : MonoBehaviour
     void Start()
     {
         _initPos = transform.position.x;
-        _rb.velocity = transform.right * _speed;
+        _rb.linearVelocity = transform.right * _speed;
     }
 
     private void Update()

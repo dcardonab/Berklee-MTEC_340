@@ -24,9 +24,13 @@ public class ReactiveTarget : MonoBehaviour
         Quaternion initRotation = transform.rotation;
         // To combine the effect of two quaternions, we multiply those quaternions together.
         Quaternion endRotation = transform.rotation * Quaternion.Euler(-75, 0, 0);
-
+        
         while (elapsedTime < _deathAnimTime)
         {
+            // Interpolate between A and B based on an Alpha value:
+            //     A = initRotation
+            //     B = endRotation
+            //     Alpha = timer
             transform.rotation = Quaternion.Lerp(
                 initRotation, endRotation, elapsedTime / _deathAnimTime);
 
