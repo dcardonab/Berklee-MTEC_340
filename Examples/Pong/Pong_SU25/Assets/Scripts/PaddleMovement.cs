@@ -1,43 +1,41 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PaddleMovement : MonoBehaviour
 {
-    public float Speed = 5.0f;
+    [SerializeField] private float _speed = 5.0f;
 
-    public float LimitY = 3.75f;
+    private float _direction = 0.0f;
 
-    public KeyCode UpDirection;
-    public KeyCode DownDirection;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private KeyCode _upDirection;
+    [SerializeField] private KeyCode _downDirection;
+
+    private Rigidbody2D _rb;
+
     void Start()
     {
+        // Get a reference to the Rigidbody
+        _rb = GetComponent<Rigidbody2D>();
         
+        // Initialize attributes in case they weren't set in the Inspector
+        _rb.linearDamping = 0.0f;
+        _rb.angularDamping = 0.0f;
+        _rb.gravityScale = 0.0f;
     }
 
-    // Update is called once per frame
+    void FixedUpdate()
+    {
+        // Apply movement using the Linear Velocity attribute of the Rigidbody
+        _rb.linearVelocityY = _direction * _speed;
+    }
+    
     void Update()
     {
-        float movement = 0.0f;
-        
-        // Check if the given keycode is currently pressed
-        if (Input.GetKey(UpDirection))
-        {
-            // Update position by adding two vectors
-            movement += Speed;
-        }
-        
-        if (Input.GetKey(DownDirection))
-        {
-            // Update position by adding two vectors
-            movement -= Speed;
-        }
+        // Define direction based on player input
+        _direction = 0.0f;
 
-        // Create new position within defined bounds
-        Vector3 newPosition = transform.position + new Vector3(0.0f, movement, 0.0f) * Time.deltaTime;
-        newPosition.y = Mathf.Clamp(newPosition.y, -LimitY, LimitY);
-
-        // Apply new position
-        transform.position = newPosition;
+        if (Input.GetKey(_upDirection)) _direction += 1.0f;
+        if (Input.GetKey(_downDirection)) _direction -= 1.0f;
     }
 }
