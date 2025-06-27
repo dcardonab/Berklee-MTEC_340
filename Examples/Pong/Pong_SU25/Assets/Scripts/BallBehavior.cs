@@ -1,14 +1,53 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class BallBehavior : MonoBehaviour
 {
     private Rigidbody2D _rb;
+    private Vector2 _prevBallVelocity;
+    private bool _isPaused = false;
+
+    private AudioSource _source;
+
+    [SerializeField] private AudioClip _wallHitClip;
+    [SerializeField] private AudioClip _paddleHitClip;
+    [SerializeField] private AudioClip _scoreClip;
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _source = GetComponent<AudioSource>();
 
         ResetBall();
+    }
+
+    private void Update()
+    {
+        // Check state
+        if (GameBehavior.Instance.CurrentState == Utilities.GameState.Pause)
+        {
+            if (!_isPaused)
+            {
+                // Store velocity for use when returning to Play state
+                _prevBallVelocity = _rb.linearVelocity;
+                _rb.linearVelocity = Vector2.zero;
+                
+                _isPaused = true;   // Set flag
+            }
+        }
+        else
+        {
+            if (_isPaused)
+            {
+                // Restore velocity
+                _rb.linearVelocity = _prevBallVelocity;
+                
+                _isPaused = false;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -28,6 +67,12 @@ public class BallBehavior : MonoBehaviour
             
             // Apply a small speed increase
             _rb.linearVelocity *= GameBehavior.Instance.BallSpeedIncrement;
+
+            PlaySound(_paddleHitClip);
+        }
+        else
+        {
+            PlaySound(_wallHitClip, pitchMax: 1.3f);
         }
     }
 
@@ -37,7 +82,16 @@ public class BallBehavior : MonoBehaviour
         {
             GameBehavior.Instance.ScorePoint(transform.position.x < 0 ? 2 : 1);
             ResetBall();
+            
+            PlaySound(_scoreClip, pitchMin: 0.9f, pitchMax: 1.1f);
         }
+    }
+
+    void PlaySound(AudioClip clip, float pitchMin = 0.8f, float pitchMax = 1.2f)
+    {
+        _source.clip = clip;
+        _source.pitch = Random.Range(pitchMin, pitchMax);
+        _source.Play();
     }
 
     void ResetBall()

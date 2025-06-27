@@ -1,4 +1,4 @@
-using System;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,6 +20,11 @@ public class PaddleMovement : MonoBehaviour
         _rb.linearDamping = 0.0f;
         _rb.angularDamping = 0.0f;
         _rb.gravityScale = 0.0f;
+
+        // Assign random color to each paddle
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        int index = Random.Range(0, Utilities.Colors.Length);
+        spriteRenderer.color = Utilities.Colors[index];
     }
 
     void FixedUpdate()
@@ -33,7 +38,10 @@ public class PaddleMovement : MonoBehaviour
         // Define direction based on player input
         _direction = 0.0f;
 
-        if (Input.GetKey(_upDirection)) _direction += 1.0f;
-        if (Input.GetKey(_downDirection)) _direction -= 1.0f;
+        if (GameBehavior.Instance.CurrentState == Utilities.GameState.Play)
+        {
+            if (Input.GetKey(_upDirection)) _direction += 1.0f;
+            if (Input.GetKey(_downDirection)) _direction -= 1.0f;
+        }
     }
 }
