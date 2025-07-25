@@ -22,7 +22,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] float _minVert = -45.0f;
     [SerializeField] float _maxVert = 45.0f;
 
-    private float _verticalRot = 0;
+    private float _verticalRot = 0.0f;
 
     private void Start()
     {

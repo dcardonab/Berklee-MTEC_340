@@ -7,10 +7,11 @@ using UnityEngine;
 
 // Place object in a given component bin.
 [AddComponentMenu("Control Script/FPS Input")]
-    
+
 public class FPSInput : MonoBehaviour
 {
     [Header("Movement Attributes")]
+    
     [Range(1.0f, 10.0f)]
     [SerializeField] float _speed = 6.0f;
     [SerializeField] float _gravity = -9.8f;
