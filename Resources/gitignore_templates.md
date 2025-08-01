@@ -176,4 +176,7 @@ This is a good starting point for a .gitattributes file designed for working wit
 *.tga filter=lfs diff=lfs merge=lfs -text
 *.tif filter=lfs diff=lfs merge=lfs -text
 *.tiff filter=lfs diff=lfs merge=lfs -text
+
+# Wwise
+*.bnk filter=lfs diff=lfs merge=lfs -text
 ```
