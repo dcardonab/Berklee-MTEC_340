@@ -55,13 +55,6 @@ public class IntermittentAudioEmitter : MonoBehaviour
 
     void SetAudioProperties()
     {
-        /*
-         * if (playerWalksIntoTrigger)
-         *     return;
-         * 
-         */
-        
-        
         // Load sound
         _currentClipIndex = LoadRandomIndex(_animalSounds.Length, _currentClipIndex);
         _source.clip = _animalSounds[_currentClipIndex];
