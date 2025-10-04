@@ -9,10 +9,7 @@ public class Player : MonoBehaviour
 
     public int Score
     {
-        get
-        {
-            return _score;
-        }
+        get => _score;
 
         set
         {

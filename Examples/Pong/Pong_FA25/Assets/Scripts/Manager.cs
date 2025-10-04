@@ -1,14 +1,27 @@
-using System;
 using UnityEngine;
+using TMPro;
 
 public class Manager : MonoBehaviour
 {
     public static Manager Instance;
 
+    private Utilities.GameState _state;
+    public Utilities.GameState State
+    {
+        get => _state;
+        set
+        {
+            _state = value;
+            _messagesUI.enabled = State == Utilities.GameState.Pause;
+        }
+    }
+
     public Player[] Players = new Player[2];
     
     // Ball properties
     public float BallSpeedMultiplier = 1.1f;
+
+    [SerializeField] private TMP_Text _messagesUI;
 
     private void Awake()
     {
@@ -32,9 +45,26 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        State = Utilities.GameState.Play;
+        
         foreach (Player p in Players)
         {
-            p.Score = 100;
+            p.Score = 0;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            State = State == Utilities.GameState.Play ?
+                Utilities.GameState.Pause :
+                Utilities.GameState.Play;
+        }
+    }
+
+    public void ScorePoint(int playerNum)
+    {
+        Players[playerNum - 1].Score++;
     }
 }

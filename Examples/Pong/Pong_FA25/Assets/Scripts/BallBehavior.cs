@@ -1,21 +1,31 @@
 using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Audio;
 
 public class BallBehavior : MonoBehaviour
 {
     [SerializeField] private float _launchForce = 5.0f;
 
     [SerializeField] private float _paddleInfluence = 0.4f;
+
+    [SerializeField] private AudioResource _scorePoint;
+    [SerializeField] private AudioResource _paddleHit;
+    [SerializeField] private AudioResource _wallHit;
     
     private Rigidbody2D _rb;
-    
+    private AudioSource _source;
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _source = GetComponent<AudioSource>();
         
         ResetBall();
+    }
+
+    private void Update()
+    {
+        _rb.simulated = Manager.Instance.State != Utilities.GameState.Pause;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -34,11 +44,22 @@ public class BallBehavior : MonoBehaviour
             
             // Apply speed increment
             _rb.linearVelocity *= Manager.Instance.BallSpeedMultiplier;
+
+            _source.resource = _paddleHit;
         }
+        else
+            _source.resource = _wallHit;
+        
+        _source.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Manager.Instance.ScorePoint(transform.position.x > 0 ? 1 : 2);
+
+        _source.resource = _scorePoint;
+        _source.Play();
+        
         ResetBall();
     }
 
@@ -52,23 +73,11 @@ public class BallBehavior : MonoBehaviour
         
         // Compute new direction
         Vector2 direction = new Vector2(
-            GetNonZeroRandomFloat(),
-            GetNonZeroRandomFloat()
+            Utilities.GetNonZeroRandomFloat(),
+            Utilities.GetNonZeroRandomFloat()
         ).normalized;
         
         // Ping the ball
         _rb.AddForce(direction * _launchForce, ForceMode2D.Impulse);
-    }
-
-    float GetNonZeroRandomFloat(float min = -1.0f, float max = 1.0f)
-    {
-        float num;
-
-        do
-        {
-            num = Random.Range(min, max);
-        } while (Mathf.Approximately(num, 0.0f));
-
-        return num;
     }
 }
