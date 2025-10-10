@@ -20,6 +20,8 @@ public class Manager : MonoBehaviour
     
     // Ball properties
     public float BallSpeedMultiplier = 1.1f;
+    
+    [SerializeField] private int _scoreToVictory = 5;
 
     [SerializeField] private TMP_Text _messagesUI;
 
@@ -47,10 +49,7 @@ public class Manager : MonoBehaviour
     {
         State = Utilities.GameState.Play;
         
-        foreach (Player p in Players)
-        {
-            p.Score = 0;
-        }
+        ResetGame();
     }
 
     private void Update()
@@ -61,10 +60,33 @@ public class Manager : MonoBehaviour
                 Utilities.GameState.Pause :
                 Utilities.GameState.Play;
         }
+        
+        // A better way to pause the game!
+        Time.timeScale = State == Utilities.GameState.Play ? 1 : 0;
     }
 
     public void ScorePoint(int playerNum)
     {
         Players[playerNum - 1].Score++;
+        CheckWinner();
+    }
+
+    private void CheckWinner()
+    {
+        foreach (Player p in Players)
+        {
+            if (p.Score >= _scoreToVictory)
+            {
+                ResetGame();
+            }
+        }
+    }
+
+    private void ResetGame()
+    {
+        foreach (Player p in Players)
+        {
+            p.Score = 0;
+        }
     }
 }

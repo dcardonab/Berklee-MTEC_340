@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PaddleBehavior : MonoBehaviour
@@ -16,6 +15,9 @@ public class PaddleBehavior : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Utilities.Colors[Random.Range(0, Utilities.Colors.Count)];
     }
 
     void FixedUpdate()

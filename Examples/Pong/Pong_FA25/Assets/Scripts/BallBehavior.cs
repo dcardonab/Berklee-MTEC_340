@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 public class BallBehavior : MonoBehaviour
 {
@@ -65,6 +66,9 @@ public class BallBehavior : MonoBehaviour
 
     void ResetBall()
     {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Utilities.Colors[Random.Range(0, Utilities.Colors.Count)];
+        
         // Stop the ball
         _rb.linearVelocity = Vector2.zero;
         
