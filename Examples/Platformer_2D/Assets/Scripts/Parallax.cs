@@ -6,7 +6,7 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     // Movement along a given axis will be based on a displacement distance
-    // applied to an object's intial value.
+    // applied to an object's initial value.
     float _startPosX;
 
     /*

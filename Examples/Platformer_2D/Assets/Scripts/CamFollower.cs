@@ -14,7 +14,7 @@ public class CamFollower : MonoBehaviour
 
     void Awake()
     {
-        _target = GameObject.Find("Player").GetComponent<Transform>();
+        _target = GameObject.Find("Player").transform;
     }
 
     void LateUpdate()
