@@ -22,6 +22,20 @@ public class BallBehavior : MonoBehaviour
         _source = GetComponent<AudioSource>();
         
         ResetBall();
+
+        StartCoroutine(TremoloAlarm(0.5f));
+    }
+
+    IEnumerator TremoloAlarm(float rate) {
+        while(_playerSpotted) {
+            // On
+            _source.volume = 1.0f;
+            yield return new WaitForSeconds(rate);
+
+            // off
+            _source.volume = 0.0f;
+            yield return new WaitForSeconds(rate);
+        }
     }
 
     private void Update()

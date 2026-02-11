@@ -8,6 +8,9 @@ public class FPSInput : MonoBehaviour
     [Range(1.0f, 10.0f)]
     [SerializeField] float _speed = 5.0f;
     [SerializeField] float _gravity = -9.8f;
+
+    [SerializeField] private float _jumpSpeed = 15.0f;
+    float _verticalVelocity;
     
     CharacterController _controller;
     
@@ -23,6 +26,16 @@ public class FPSInput : MonoBehaviour
         //     0,
         //     Input.GetAxis("Vertical") * _speed * Time.deltaTime
         // );
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _speed += 5.0f;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speed -= 5.0f;
+        }
         
         // Gather input info
         float deltaX = Input.GetAxis("Horizontal") * _speed;
@@ -33,9 +46,25 @@ public class FPSInput : MonoBehaviour
 
         // Clamp diagonal movement
         movement = Vector3.ClampMagnitude(movement, _speed);
+
+        if (_controller.isGrounded)
+        {
+            _verticalVelocity = _gravity;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _verticalVelocity = _jumpSpeed;
+            }
+        }
+        else
+        {
+            _verticalVelocity += _gravity * 3.0f * Time.deltaTime;
+        }
+        
+        Debug.Log(_verticalVelocity);
         
         // Apply gravity after X and Z have been clampedx
-        movement.y = _gravity;
+        movement.y = _verticalVelocity;
         
         // Consider frame rate
         movement *= Time.deltaTime;
