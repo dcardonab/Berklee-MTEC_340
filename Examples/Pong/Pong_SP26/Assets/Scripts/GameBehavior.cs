@@ -1,12 +1,27 @@
-using System;
 using UnityEngine;
+using TMPro;
 
 public class GameBehavior : MonoBehaviour
 {
     public static GameBehavior Instance;
 
+    private Utilities.GameState _gameMode;
+    public Utilities.GameState GameMode
+    {
+        get => _gameMode;
+        set
+        {
+            _gameMode = value;
+            _pauseUI.enabled = GameMode != Utilities.GameState.Play;
+        }
+    }
+
     [SerializeField] private GameObject _ballPrefab;
 
+    [SerializeField] private Player[] _players = new Player[2];
+
+    [SerializeField] private TMP_Text _pauseUI;
+    
     private void Awake()
     {
         // Singleton pattern
@@ -42,7 +57,24 @@ public class GameBehavior : MonoBehaviour
 
     private void Start()
     {
+        foreach (Player p in _players)
+        {
+            p.Score = 0;
+        }
+
+        GameMode = Utilities.GameState.Play;
+        
         Serve();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameMode = GameMode == Utilities.GameState.Play ?   // Condition
+                Utilities.GameState.Pause : // Passing value
+                Utilities.GameState.Play;   // Failing value
+        }
     }
 
     private void Serve()
@@ -51,8 +83,11 @@ public class GameBehavior : MonoBehaviour
         Instantiate(_ballPrefab, Vector3.zero, Quaternion.identity);
     }
 
-    public void Score()
+    public void Score(int playerNum)
     {
+        // Array indexing in C# is zero-indexed
+        _players[playerNum - 1].Score++;
+        
         // Invoke schedules a function to execute after a given duration
         Invoke(nameof(Serve), 2.0f);
     }

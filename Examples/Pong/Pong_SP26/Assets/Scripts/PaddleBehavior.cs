@@ -20,22 +20,23 @@ public class PaddleBehavior : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.linearVelocityY = _direction * _speed;
-        Debug.Log(_rb.linearVelocityY);
     }
 
     void Update()
     {
         _direction = 0.0f;
-        if (Input.GetKey(_upDirection))
-        {
-            Debug.Log("up");
-            _direction += 1.0f;
-        }
 
-        if (Input.GetKey(_downDirection))
+        if (GameBehavior.Instance.GameMode == Utilities.GameState.Play)
         {
-            Debug.Log("down");
-            _direction -= 1.0f;
+            if (Input.GetKey(_upDirection))
+            {
+                _direction += 1.0f;
+            }
+
+            if (Input.GetKey(_downDirection))
+            {
+                _direction -= 1.0f;
+            }
         }
     }
 }

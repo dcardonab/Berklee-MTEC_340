@@ -9,10 +9,16 @@ public class BallBehavior : MonoBehaviour
     [SerializeField] private float _speedMultiplier = 1.1f;
     
     private Rigidbody2D _rb;
+
+    private AudioSource _source;
+    [SerializeField] private AudioClip _paddleHit;
+    [SerializeField] private AudioClip _wallHit;
+    [SerializeField] private AudioClip _scoreSound;
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _source = GetComponent<AudioSource>();
         
         Vector2 direction = Random.insideUnitCircle;
 
@@ -22,6 +28,20 @@ public class BallBehavior : MonoBehaviour
             direction.x += 0.5f * Mathf.Sign(direction.x);
         
         _rb.AddForce(direction.normalized * _launchForce, ForceMode2D.Impulse);
+    }
+
+    private void Update()
+    {
+        // if (GameBehavior.Instance.GameMode == Utilities.GameState.Play)
+        // {
+        //     _rb.simulated = true;
+        // }
+        // else
+        // {
+        //     _rb.simulated = false;
+        // }
+
+        _rb.simulated = GameBehavior.Instance.GameMode == Utilities.GameState.Play;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -41,15 +61,27 @@ public class BallBehavior : MonoBehaviour
             }
             
             _rb.linearVelocity *= _speedMultiplier;
+            _source.resource = _paddleHit;
         }
+        else
+        {
+            _source.resource = _wallHit;
+        }
+
+        _source.Play();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Ternary operator - abbreviation of if-else
+        // condition ? pass : failing
+        
         // Score a point through the game manager
-        GameBehavior.Instance.Score();
+        GameBehavior.Instance.Score(transform.position.x > 0 ? 1 : 2);
+        
+        _source.PlayOneShot(_scoreSound);
         
         // Remove the ball that's in play from the game
-        Destroy(gameObject);
+        Destroy(gameObject, _scoreSound.length);
     }
 }
