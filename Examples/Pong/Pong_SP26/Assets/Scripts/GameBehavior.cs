@@ -16,6 +16,8 @@ public class GameBehavior : MonoBehaviour
         }
     }
 
+    [SerializeField] private int _targetScore = 3;
+
     [SerializeField] private GameObject _ballPrefab;
 
     [SerializeField] private Player[] _players = new Player[2];
@@ -87,8 +89,29 @@ public class GameBehavior : MonoBehaviour
     {
         // Array indexing in C# is zero-indexed
         _players[playerNum - 1].Score++;
+
+        CheckWinner();
         
         // Invoke schedules a function to execute after a given duration
         Invoke(nameof(Serve), 2.0f);
+    }
+
+    private void CheckWinner()
+    {
+        foreach (Player p in _players)
+        {
+            if (p.Score >= _targetScore)
+            {
+                ResetGame();
+            }
+        }
+    }
+
+    private void ResetGame()
+    {
+        foreach (Player p in _players)
+        {
+            p.Score = 0;
+        }
     }
 }
