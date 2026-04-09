@@ -129,6 +129,8 @@ MonoBehaviour:
   _speed: 7
   _obstacleRange: 5
   _sphereRadius: 0.75
+  _fireballPrefab: {fileID: 4320831449443702182, guid: 76a66303e2d374f62b61640c5f7d0332, type: 3}
+  Fireball: {fileID: 0}
 --- !u!114 &73221718874083702
 MonoBehaviour:
   m_ObjectHideFlags: 0

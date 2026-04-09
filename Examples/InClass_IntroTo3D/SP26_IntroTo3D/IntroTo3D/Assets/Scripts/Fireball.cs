@@ -14,6 +14,11 @@ public class Fireball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+        
+        if (player)
+            player.Health -= _damage;
+        
         Destroy(gameObject);
     }
 }
