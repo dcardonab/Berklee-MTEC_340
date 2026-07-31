@@ -1122,6 +1122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPSInput
   _speed: 5
+  _jumpVelocity: 15
+  _fallingScalar: 3
 --- !u!143 &2045211927
 CharacterController:
   m_ObjectHideFlags: 0

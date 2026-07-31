@@ -10,6 +10,11 @@ public class FPSInput : MonoBehaviour
 
     private CharacterController _controller;
     private float _gravity = -9.81f;
+    
+    [Header("Jumping Attributes")]
+    [SerializeField, Range(5.0f, 20.0f)] private float _jumpVelocity = 15.0f;
+    [SerializeField, Range(0.5f, 5.0f)] private float _fallingScalar = 3.0f;
+    private float _verticalVelocity;
 
     private void Start()
     {
@@ -31,9 +36,23 @@ public class FPSInput : MonoBehaviour
         
         // Avoid faster movement when moving diagonally
         movement = Vector3.ClampMagnitude(movement, _speed);
+
+        if (_controller.isGrounded)
+        {
+            _verticalVelocity = _gravity;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _verticalVelocity = _jumpVelocity;
+            }
+        }
+        else
+        {
+            _verticalVelocity += _gravity * _fallingScalar * Time.deltaTime;
+        }
         
         // Apply gravity after computing movement direction and speed
-        movement.y = _gravity;
+        movement.y = _verticalVelocity;
         
         movement *= Time.deltaTime;
         
