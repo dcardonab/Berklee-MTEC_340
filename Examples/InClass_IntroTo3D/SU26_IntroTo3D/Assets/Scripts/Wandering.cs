@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Wandering : MonoBehaviour
 {
@@ -53,6 +55,17 @@ public class Wandering : MonoBehaviour
                     transform.Rotate(0.0f, theta, 0.0f);
                 }
             }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        EnemyWaves waveSystem =  transform.GetComponentInParent<EnemyWaves>();
+
+        if (waveSystem)
+        {
+            waveSystem.Enemies.Remove(gameObject);
+            Debug.Log(waveSystem.Enemies.Count);
         }
     }
 }
