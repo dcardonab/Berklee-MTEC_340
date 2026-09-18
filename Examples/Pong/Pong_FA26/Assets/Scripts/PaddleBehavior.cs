@@ -1,40 +1,39 @@
+using System;
 using UnityEngine;
 
 public class PaddleBehavior : MonoBehaviour
 {
+    private float _direction = 0.0f;
+    
     [SerializeField] private float _speed = 5.0f;
 
     [SerializeField] private KeyCode _upDirection = KeyCode.UpArrow;
     [SerializeField] private KeyCode _downDirection = KeyCode.DownArrow;
+    
+    private Rigidbody2D _rb;
 
-    // public float Limit = 3.5f;
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        _rb.linearVelocityY = _direction * _speed;
+    }
 
     void Update()
     {
-        float movement = 0.0f;
-        
+        _direction = 0.0f;
+
         if (Input.GetKey(_upDirection))
         {
-            movement += _speed;
+            _direction += 1.0f;
         }
+
         if (Input.GetKey(_downDirection))
         {
-            movement -= _speed;
+            _direction -= 1.0f;
         }
-        
-        movement *= Time.deltaTime;
-        
-        transform.Translate(0.0f, movement, 0.0f);
-
-        
-        // The code below allows for constaining the paddle within two bounds.
-        
-        // if (Mathf.Abs(transform.position.y) > Limit)
-        // {
-        //     transform.position = new Vector3(transform.position.x, Mathf.Sign(transform.position.y) * Limit, transform.position.z);
-        // }
-        
-        // float yPos = Mathf.Clamp(transform.position.y, -Limit, Limit);
-        // transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
     }
 }
