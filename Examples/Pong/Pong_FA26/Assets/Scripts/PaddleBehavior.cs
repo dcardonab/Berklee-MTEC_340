@@ -25,14 +25,17 @@ public class PaddleBehavior : MonoBehaviour
     {
         _direction = 0.0f;
 
-        if (Input.GetKey(_upDirection))
+        if (GameBehavior.Instance.State == Utilities.GameState.Play)
         {
-            _direction += 1.0f;
-        }
+            if (Input.GetKey(_upDirection))
+            {
+                _direction += 1.0f;
+            }
 
-        if (Input.GetKey(_downDirection))
-        {
-            _direction -= 1.0f;
+            if (Input.GetKey(_downDirection))
+            {
+                _direction -= 1.0f;
+            }
         }
     }
 }

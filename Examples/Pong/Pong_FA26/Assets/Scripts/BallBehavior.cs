@@ -1,18 +1,20 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BallBehavior : MonoBehaviour
 {
+    [Header("Ball Properties")]
     [SerializeField] private float _launchForce = 7.0f;
-    [SerializeField] private float _speedIncrement = 1.1f;
+    [SerializeField, Range(1.0f, 2.0f)] private float _speedIncrement = 1.1f;
+
+    [SerializeField, Range(0.0f, 1.0f)] private float _steepnessThreshold = 0.25f;
     
-    [SerializeField] private float _paddleInfluence = 0.4f;
+    [SerializeField, Range(0.0f, 1.0f)] private float _paddleInfluence = 0.4f;
     
     private Rigidbody2D _rb;
-
     private AudioSource _source;
+
+    [Header("Audio Properties")]
     [SerializeField] private AudioClip _wallHit;
     [SerializeField] private AudioClip _paddleHit;
     [SerializeField] private AudioClip _scorePoint;
@@ -25,6 +27,16 @@ public class BallBehavior : MonoBehaviour
 
         ResetBall();
     }
+
+    void Update()
+    {
+        _rb.simulated = GameBehavior.Instance.State == Utilities.GameState.Play;
+    }
+
+    // void OnDestroy()
+    // {
+    //     GameBehavior.Instance.ResetPoint();
+    // }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,7 +51,11 @@ public class BallBehavior : MonoBehaviour
                 Vector2 direction = _rb.linearVelocity * (1.0f - _paddleInfluence)
                                     + collision.rigidbody.linearVelocity * _paddleInfluence;
                 
-                _rb.linearVelocity = _rb.linearVelocity.magnitude * direction.normalized * _speedIncrement;
+                direction.Normalize();
+                
+                CheckSteepness(ref direction);
+                
+                _rb.linearVelocity = _rb.linearVelocity.magnitude * direction * _speedIncrement;
             }
             
             _source.PlayOneShot(_paddleHit);
@@ -58,21 +74,45 @@ public class BallBehavior : MonoBehaviour
     {
         GameBehavior.Instance.ScorePoint(transform.position.x < 0 ? 1 : 0);
         
-        _source.PlayOneShot(_scorePoint);
+        // Monophonic-like behavior
+        _source.clip = _scorePoint;
+        _source.Play();
         
-        ResetBall();
+        // Polyphonic-like behavior
+        // _source.PlayOneShot(_scorePoint);
+
+        Invoke(nameof(DestroyBall), _source.clip.length + 0.5f);
+        
+        // Destroy() has a scheduling function that allows avoiding Invoke behavior
+        // Destroy(gameObject, _scorePoint.length);
+    }
+
+    private void CheckSteepness(ref Vector2 direction)
+    {
+        if (Mathf.Abs(direction.x) < _steepnessThreshold)
+        {
+            direction.x += 0.5f * Mathf.Sign(direction.x);
+            direction.Normalize();
+        }
+    }
+
+    private void DestroyBall()
+    {
+        Destroy(gameObject);
     }
 
     private void ResetBall()
     {
-        // Stop the ball
-        _rb.linearVelocity = Vector2.zero;
-        
-        // Teleport the ball to the middle of the screen
-        transform.position = Vector3.zero;
+        // // Stop the ball
+        // _rb.linearVelocity = Vector2.zero;
+        //
+        // // Teleport the ball to the middle of the screen
+        // transform.position = Vector3.zero;
         
         // Compute a new random direction
         Vector2 direction = Random.insideUnitCircle.normalized;
+        
+        CheckSteepness(ref direction);
         
         // Launch ball in the computed direction with the specified force
         _rb.AddForce(direction * _launchForce, ForceMode2D.Impulse);
