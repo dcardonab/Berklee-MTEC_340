@@ -5,6 +5,17 @@ public class GameBehavior : MonoBehaviour
 {
     public static GameBehavior Instance;
 
+    [Header("General")]
+    public Player[] Players = new Player[2];
+    
+    [SerializeField] private GameObject _ballPrefab;
+    [SerializeField] private Transform _ballParent;
+    private GameObject _ball;
+
+    [SerializeField] private int _winningScore = 5;
+    
+    [Header("UI")]
+    [SerializeField] private TMP_Text _pauseUI;
     private Utilities.GameState _state;
     public Utilities.GameState State
     {
@@ -17,15 +28,15 @@ public class GameBehavior : MonoBehaviour
         }
     }
     
-    [SerializeField] private TMP_Text _pauseUI;
-    
-    public Player[] Players = new Player[2];
-    
-    [SerializeField] private GameObject _ballPrefab;
-    [SerializeField] private Transform _ballParent;
-    private GameObject _ball;
+    [Header("Pickup")]
+    [SerializeField] private GameObject _powerUpPrefab;
+    [SerializeField] private Transform _powerUpParent;
+    private GameObject _powerUp;
 
-    [SerializeField] private int _winningScore = 5;
+    [SerializeField] private Vector2 _powerUpSpawnBounds = new Vector2(7.0f, 4.5f);
+
+    [SerializeField, Range(0.0000001f, 0.01f)] private float _powerUpSpawnProbability = 0.0001f;
+    private Vector2 _prefabSize;
 
     void Awake()
     {
@@ -35,6 +46,7 @@ public class GameBehavior : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
             Debug.Log("New instance initialized...");
         }
         else if (Instance != this)
@@ -51,11 +63,19 @@ public class GameBehavior : MonoBehaviour
         // else
         // {
         //     Instance = this;
+        //     DontDestroyOnLoad(gameObject);
         // }
     }
 
     void Start()
     {
+        BoxCollider2D powerUpCollider = _powerUpPrefab.GetComponent<BoxCollider2D>();
+
+        if (powerUpCollider)
+        {
+            _prefabSize = powerUpCollider.size;
+        }
+        
         ResetScore();
         ResetPoint();
 
@@ -71,10 +91,40 @@ public class GameBehavior : MonoBehaviour
                     Utilities.GameState.Pause :
                     Utilities.GameState.Play;
         }
-        
-        if (!_ball)
+
+        if (State == Utilities.GameState.Play)
         {
-            ResetPoint();
+            if (!_ball)
+            {
+                ResetPoint();
+            }
+
+            if (!_powerUp && Random.value < _powerUpSpawnProbability)
+            {
+                Vector2 position = Vector2.zero;
+                int counter = 0;
+                int maxNumberTries = 30;
+
+                do
+                {
+                    if (counter > maxNumberTries)
+                    {
+                        break;
+                    }
+                    
+                    position = new Vector2(
+                        Random.Range(-_powerUpSpawnBounds.x, _powerUpSpawnBounds.x),
+                        Random.Range(-_powerUpSpawnBounds.y, _powerUpSpawnBounds.y)
+                    );
+
+                    counter++;
+                } while (
+                    Physics2D.OverlapBox(position, _prefabSize, 0.0f) &&    
+                    Physics2D.OverlapBox(position, _prefabSize, 45.0f)    
+                );
+
+                _powerUp = Instantiate(_powerUpPrefab, position, Quaternion.identity, _powerUpParent);
+            }
         }
     }
 
@@ -107,5 +157,10 @@ public class GameBehavior : MonoBehaviour
         {
             ResetScore();
         }
+    }
+
+    public void PowerUp(int playerNumber)
+    {
+        StartCoroutine(Players[playerNumber].PowerUp());
     }
 }

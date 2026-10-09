@@ -1,6 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class BallBehavior : MonoBehaviour
 {
     [Header("Ball Properties")]
@@ -72,19 +73,16 @@ public class BallBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameBehavior.Instance.ScorePoint(transform.position.x < 0 ? 1 : 0);
-        
-        // Monophonic-like behavior
-        _source.clip = _scorePoint;
-        _source.Play();
-        
-        // Polyphonic-like behavior
-        // _source.PlayOneShot(_scorePoint);
+        if (other.CompareTag("ScoreArea"))
+        {
+            GameBehavior.Instance.ScorePoint(transform.position.x < 0 ? 1 : 0);
+            
+            // Monophonic-like behavior
+            _source.clip = _scorePoint;
+            _source.Play();
 
-        Invoke(nameof(DestroyBall), _source.clip.length + 0.5f);
-        
-        // Destroy() has a scheduling function that allows avoiding Invoke behavior
-        // Destroy(gameObject, _scorePoint.length);
+            Invoke(nameof(DestroyBall), _source.clip.length + 0.5f);
+        }
     }
 
     private void CheckSteepness(ref Vector2 direction)

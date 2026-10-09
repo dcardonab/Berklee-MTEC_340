@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Paddle
+  - ScoreArea
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Pickup
+  - Projectile
   - 
   - 
   - 

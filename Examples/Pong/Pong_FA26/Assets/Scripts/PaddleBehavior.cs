@@ -8,8 +8,16 @@ public class PaddleBehavior : MonoBehaviour
 
     [SerializeField] private KeyCode _upDirection = KeyCode.UpArrow;
     [SerializeField] private KeyCode _downDirection = KeyCode.DownArrow;
+    [SerializeField] private KeyCode _shootKey = KeyCode.RightShift;
     
     private Rigidbody2D _rb;
+
+    [HideInInspector] public bool CanShoot = false;
+    
+    [Header("Projectile")]
+    [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private Transform _projectileSpawnPoint;
+    [SerializeField] private Transform _projectileParent;
 
     private void Start()
     {
@@ -35,6 +43,15 @@ public class PaddleBehavior : MonoBehaviour
             if (Input.GetKey(_downDirection))
             {
                 _direction -= 1.0f;
+            }
+
+            if (CanShoot && Input.GetKeyDown(_shootKey))
+            {
+                Instantiate(
+                    _projectilePrefab,                  // Prefab
+                    _projectileSpawnPoint.position,     // Pos
+                    _projectileSpawnPoint.rotation,     // Rot
+                    _projectileParent);                 // Parent
             }
         }
     }
