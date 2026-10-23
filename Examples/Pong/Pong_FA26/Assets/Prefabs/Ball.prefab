@@ -115,6 +115,7 @@ MonoBehaviour:
   _wallHit: {fileID: 8300000, guid: 743c5a03770224ccf97ef1deda78f813, type: 3}
   _paddleHit: {fileID: 8300000, guid: db7aa6e3ed31a4c0abe4130e3a2beb62, type: 3}
   _scorePoint: {fileID: 8300000, guid: 4ed51a0ecdcf640cb88829513fd949ab, type: 3}
+  _audioGenerator: {fileID: 6418180475301049370, guid: 61c62cb9728dc46a6ad3fe77482fdae8, type: 2}
 --- !u!61 &5363752783275741400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 6418180475301049370, guid: 61c62cb9728dc46a6ad3fe77482fdae8, type: 2}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

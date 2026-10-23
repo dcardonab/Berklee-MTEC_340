@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{7836c61f-e108-408d-b9bb-8c6e4727a869}">
+		<property name="assetPath">
+			<value>Ambience/NightAmbience.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>50.858666666666664</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{692fab37-2f13-4f0f-80bb-5284cff25717}</destination>
+		</relationship>
+	</object>
+</objects>

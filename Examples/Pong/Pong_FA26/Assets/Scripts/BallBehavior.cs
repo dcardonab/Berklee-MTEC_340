@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,9 +21,10 @@ public class BallBehavior : MonoBehaviour
     [SerializeField] private AudioClip _paddleHit;
     [SerializeField] private AudioClip _scorePoint;
     
+    [SerializeField] private AudioResource _wallAudioContainer;
     
     void Start()
-    {
+    {        
         _rb = GetComponent<Rigidbody2D>();
         _source = GetComponent<AudioSource>();
 
@@ -66,7 +68,7 @@ public class BallBehavior : MonoBehaviour
             _source.pitch = Random.Range(0.9f, 1.1f);
             _source.volume = Random.Range(0.8f, 1.0f);
             
-            _source.clip = _wallHit;
+            _source.resource = _wallAudioContainer;
             _source.Play();
         }
     }
